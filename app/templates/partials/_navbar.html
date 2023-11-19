@@ -1,0 +1,72 @@
+{% load static %}
+{% load group_check %}
+
+{% if user.is_authenticated %}
+
+<nav class="navbar navbar-expand-lg navbar-dark bg-primary sticky-top">
+    <div class="container-lg">
+        <a class="navbar-brand" href="{% url 'bird_all' %}">
+            <img src="{% static 'img/favicon/l.png' %}" alt="logo" width="35" height="35" />
+        </a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarColor01"
+            aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarColor01">
+            <ul class="navbar-nav me-auto">
+                {% if user.is_authenticated %}
+                    <li class="nav-item">
+                        <a class="nav-link {% if '/bird/all/' in request.path %} active {% endif %}"
+                            href="{% url 'bird_all' %}">alle Patienten</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link {% if '/bird/create/' in request.path %} active {% endif %}"
+                            href="{% url 'bird_create' %}">neuer Patient</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link {% if '/aviary/all' in request.path %} active {% endif %}"
+                            href="{% url 'aviary_all' %}">alle Volieren</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link {% if '/costs/all' in request.path %} active {% endif %}"
+                            href="{% url 'costs_all' %}">alle Kosten</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link {% if '/contacts' in request.path %} active {% endif %}"
+                            href="{% url 'contact_all' %}">Kontakte</a>
+                    </li>
+
+                    {% if request.user|group_check:"data-export" %} 
+                        <li class="nav-item">
+                            <a class="nav-link {% if '/export' in request.path %} active {% endif %}"
+                            href="{% url 'site_exports' %}">Daten-Export</a>
+                        </li>
+                    {% endif %}
+                {% endif %}
+            </ul>
+
+            <ul class="navbar-nav pull-right">
+                {% if user.is_authenticated %}
+                <li class="nav-item">
+                    <a class="nav-link {% if '/bird/help/' in request.path %} active {% endif %}"
+                        href="{% url 'bird_help' %}">Hilfe</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link {% if '/accounts/email/' in request.path %} active {% endif %}"
+                        href="{% url 'account_email' %}">Profile</a>
+                </li>
+                <li class="class-item">
+                    <a class="nav-link" href="{% url 'account_logout' %}">Logout</a>
+                </li>
+                {% else %}
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'account_login' %}">Login</a>
+                </li>
+                {% endif %}
+            </ul>
+        </div>
+    </div>
+</nav>
+{% endif %}
+<br />

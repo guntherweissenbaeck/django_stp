@@ -1,0 +1,36 @@
+{% extends "base.html" %}
+{% load static %}
+{% load crispy_forms_tags %}
+{% block content %}
+<h3>Buchung löschen</h3>
+<div class="row mt-3">
+    <div class="col-lg-5 mb-3">
+        <form method="post" enctype="multipart/form-data">
+            <fieldset>
+                {% csrf_token %}
+                <div class="card bg-light mb-3" style="max-width: 30rem;">
+                    <div class="card-header">Buchung</div>
+                    <div class="card-body">
+                        <p class="card-text">
+                            <strong>Patient:</strong> {{costs.id_bird}}<br>
+                            <strong>Buchung:</strong> {{costs.costs}}<br>
+                            <strong>Gebucht am:</strong> {{costs.created}}<br>
+                            <strong>Bemerkung:</strong> {{costs.comment|default_if_none:"keine Bemerkung"}}<br>
+                            <strong>Nutzer:</strong> {{costs.user}}<br>
+                        </p>
+                    </div>
+                </div>
+                <a href="{% url 'costs_all' %}" class="btn btn-success">Abbrechen</a>
+                <button class="btn btn-danger" type="submit">Löschen</button>
+            </fieldset>
+        </form>
+    </div>
+
+    <div class="col-lg-5">
+        <h4>Hinweis</h4>
+        <p>
+            Bitte die Kosten nur nach vorheriger Absprache löschen. Es werden regelmäßige Exporte der Kosten erstellt, welche ebenfalls angepasst werden müssen. 
+        </p>
+    </div>
+</div>
+{% endblock content %}

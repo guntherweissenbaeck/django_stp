@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+{% load static %}
+{% load crispy_forms_tags %}
+{% block content %}
+<h3>Buchung anlegen</h3>
+<div class="row mt-3">
+    <div class="col-lg-5 mb-3">
+        <form method="post" enctype="multipart/form-data">
+            <fieldset>
+                {% csrf_token %}
+                {{form|crispy}}
+                <a href="{% url 'costs_all' %}" class="btn btn-success">Abbrechen</a>
+                <button class="btn btn-primary" type="submit">Speichern</button>
+            </fieldset>
+        </form>
+    </div>
+
+    <div class="col-lg-5">
+        <h4>Bemerkung</h4>
+        <p>
+            Bitte angeben was mit der Buchung finanziert wurde und warum. Mehr
+            Informationen können eine spätere Auswertung erleichtern.
+        </p>
+        <h4>Gebucht am</h4>
+        <p>
+            Entspricht dem Datum wann die Kosten verursacht wurden, nicht wann
+            eventuelle Rechnungen bezahlt werden.
+        </p>
+    </div>
+</div>
+{% endblock content %}

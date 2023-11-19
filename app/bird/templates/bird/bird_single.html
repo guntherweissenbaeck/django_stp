@@ -1,0 +1,62 @@
+{% extends "base.html" %}
+{% load static %}
+{% load crispy_forms_tags %}
+{% block content %}
+
+<h3>Patient <strong>{{ bird.bird_identifier }}</strong> bearbeiten </h3>
+    Das Alter des Patienten bei Fund wurde mit <strong>{{ bird.age }}</strong> angegeben.</p>
+<div class="row">
+    <div class="col-lg-6 mb-3">
+        <form method="post" enctype="multipart/form-data">
+            <fieldset>
+                {% csrf_token %}
+                {{form|crispy}}
+                <a href="{% url 'bird_all' %}" class="btn btn-success">Abbrechen</a>
+                <a href="{% url 'bird_delete' bird.id %}" class="btn btn-danger">Löschen</a>
+                <a href="{% url 'costs_create' bird.id %}" class="btn btn-warning">Buchung +</a>
+                <button class="btn btn-primary" type="submit">Speichern</button>
+            </fieldset>
+        </form>
+    </div>
+
+    <div class="col-lg-5">
+        <h4>
+            Kennung
+        </h4>
+        <p>
+            Die Kennung, oder auch Patientennummer, wird sowohl für uns bei der
+            Wildvogelhilfe zum Unterscheiden von Individuen der gleichen Art
+            verwendet, als auch beim Tierarzt zum Zuordnen von Diagnosen und
+            Rechnungen. Es wird automatisch ein kurzer Name generiert. Sollte
+            die Kennung eine andere sein, kann diese jederzeit angepasst
+            werden.
+        </p>
+        <h4>
+            Fundort
+        </h4>
+        <p>
+            Der Fundort muss möglichst genau angegeben werden, damit der Vogel
+            später an der gleichen Stelle auch wieder ausgewildert werden kann.
+        </p>
+        <h4>
+            Voliere
+        </h4>
+        <p>
+            Der Menüpunkt Voliere erscheint nur, wenn der Vogel als Status "In
+            Auswilderung" hat. Hier kann eine der vorhandenen Volieren
+            ausgewählt werden, damit der Vogel dieser zugeordnet wird und in
+            der Volierenübersicht auch unter dieser gelistet wird.
+        </p>
+        <h4>Diagnose bei Fund</h4>
+        <p>
+            Die Diagnose bei Fund beschreibt die schnelle Erstdiagnose ohne
+            ärztliche Kenntnisse. Hat der Vogel äußere Verletzungen, humpelt
+            er, hängt ein Flügel?
+        </p>
+        </div>
+    </div>
+</div>
+
+<script src="{% static 'js/bird.js' %}"></script>
+
+{% endblock content %}

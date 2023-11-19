@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+{% load static %}
+{% load crispy_forms_tags %}
+{% block content %}
+<h3>Buchung bearbeiten</h3>
+<div class="row mt-3">
+    <div class="col-lg-5 mb-3">
+        <form method="post" enctype="multipart/form-data">
+            <fieldset>
+                {% csrf_token %}
+                {{form|crispy}}
+                <a href="{% url 'costs_all' %}" class="btn btn-success">Abbrechen</a>
+                <button class="btn btn-primary" type="submit">Speichern</button>
+            </fieldset>
+        </form>
+    </div>
+    <div class="col-lg-5">
+        <h4>Hinweis</h4>
+        <p>
+            Bitte die Kosten nur nach vorheriger Absprache bearbeiten. Es werden regelmäßige Exporte der Kosten erstellt, welche ebenfalls angepasst werden müssen. 
+        </p>
+    </div>
+</div>
+{% endblock content %}

@@ -1,0 +1,42 @@
+{% extends "base.html" %}
+{% load static %}
+{% load crispy_forms_tags %}
+{% block content %}
+
+<h3>Voliere <strong>{{ aviary.description }}</strong> bearbeiten </h3>
+<div class="row">
+    <div class="col-lg-5 mt-3 mb-3">
+        <form method="post" enctype="multipart/form-data">
+            <fieldset>
+                {% csrf_token %}
+                {{form|crispy}}
+                <a href="{% url 'aviary_all' %}" class="btn btn-success">Abbrechen</a>
+                <button class="btn btn-primary" type="submit">Speichern</button>
+            </fieldset>
+        </form>
+    </div>
+    <div class="col-lg-1"></div>
+    <div class="col-lg-4">
+        <h4>
+            Patienten der Voliere
+        </h4>
+        <p>Hier finden Sie die Patienten, die momentan in der Voliere {{ aviary.description }} untergebracht sind.</p>
+        <p>
+            {% for bird in birds %}
+            <div class="card bg-light mb-3" style="max-width: 30rem;">
+                <div class="card-header"><h5 class="card-title">Patient: {{bird.bird_identifier}}</h5></div>
+                <div class="card-body">
+                    <p class="card-text">
+                        <strong>Vogel:</strong> {{bird.bird}}<br>
+                        <strong>gefunden am:</strong> {{bird.created}}<br>
+                        <strong>Statusänderung am:</strong> {{bird.updated}}<br>
+                        <strong>Fundumstände:</strong> {{bird.find_circumstances}}<br>
+                        <strong>Diagnose:</strong> {{bird.diagnostic_finding}}<br>
+                    </p>
+                </div>
+            </div>
+            {% endfor %}
+        </p>
+    </div>
+</div>
+{% endblock content %}
