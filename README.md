@@ -5,7 +5,7 @@
 To add testdata, use the loaddata functionality of django:
 
 ```bash
-docker exec -ti django_stp_web_1 python3 manage.py loaddata fixtures/defaultUser.json
+bash ./bin/loadData
 ```
 
 ## Test Account
