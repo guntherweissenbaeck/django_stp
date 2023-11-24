@@ -44,11 +44,7 @@ def bird_help_single(request, id):
 
 @login_required(login_url="account_login")
 def bird_all(request):
-    birds = (
-        FallenBird.objects.filter(Q(status="1") | Q(status="2"))
-        .annotate(total_costs=Sum("costs__costs"))
-        .order_by("date_found")
-    )
+    birds = FallenBird.objects.order_by("date_found")
     context = {"birds": birds}
     return render(request, "bird/bird_all.html", context)
 
@@ -71,8 +67,6 @@ def bird_single(request, id):
     if request.method == "POST":
         if form.is_valid():
             fs = form.save(commit=False)
-            if fs.status.description != "In Auswilderung":
-                fs.aviary = None
             fs.save()
             return redirect("bird_all")
     context = {"form": form, "bird": bird}

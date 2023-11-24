@@ -23,9 +23,7 @@ JAZZMIN_SETTINGS = {
     # If you want to use a single search field you dont need to use a list, you can use a simple string
     # "search_model": ["bird.User", "auth.Group"],
     "search_model": [
-        "aviary.Aviary",
         "bird.FallenBird",
-        # "bird.User",
     ],
     # Field name on user model that contains avatar ImageField/URLField/Charfield or a callable that receives the user
     # "user_avatar": None,
@@ -80,7 +78,6 @@ JAZZMIN_SETTINGS = {
         "auth.Group": "fas fa-users",
         "auth.user": "fas fa-user",
         "auth": "fas fa-users-cog",
-        "aviary.Aviary": "fas fa-solid fa-plane",
         "bird.Bird": "fas fa-solid fa-dove",
         "bird.BirdStatus": "fas fa-solid fa-thermometer",
         "bird.Circumstance": "fas fa-solid fa-ring",

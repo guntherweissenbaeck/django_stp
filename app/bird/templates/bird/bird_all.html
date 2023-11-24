@@ -59,7 +59,6 @@
       <th>gefunden am</th>
       <th>Fundort</th>
       <th>Status</th>
-      <th>Voliere</th>
       <th>Kosten</th>
       <th>Alter</th>
       <th>Geschlecht</th>
@@ -71,9 +70,8 @@
       <td><a href="{% url 'bird_single' bird.id %}">{{ bird.bird_identifier }}</a></td>
       <td>{{ bird.bird }}</td>
       <td data-order="{{ forloop.counter }}">{{ bird.date_found }}</td>
-      <td>{{ bird.place }}</td>
+      <td>{{ bird.place_found }}</td>
       <td>{{ bird.status }}</td>
-      <td>{{ bird.aviary|default_if_none:"" }}</td>
       <td>{{ bird.total_costs|default_if_none:"0,00" }} &euro;</td>
       <td>{{ bird.age|default_if_none:"" }}</td>
       <td>{{ bird.sex }}</td>

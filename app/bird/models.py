@@ -7,23 +7,14 @@ from django.utils.translation import gettext_lazy as _
 
 from ckeditor.fields import RichTextField
 
-from aviary.models import Aviary
-
-
-CHOICE_AGE = [
-    ("unbekannt", "unbekannt"),
-    ("Ei", "Ei"),
-    ("Nestling", "Nestling"),
-    ("Ästling", "Ästling"),
-    ("Juvenil", "Juvenil"),
-    ("Adult", "Adult"),
-]
-
-CHOICE_SEX = [
-    ("Weiblich", "Weiblich"),
-    ("Männlich", "Männlich"),
-    ("Unbekannt", "Unbekannt"),
-]
+from .choices import (
+    CHOICE_AGE,
+    CHOICE_CIRCUMSTANCES,
+    CHOICE_FINDER,
+    CHOICE_PLACE,
+    CHOICE_SEX,
+    CHOICE_STATUS,
+)
 
 
 def costs_default():
@@ -35,42 +26,43 @@ class FallenBird(models.Model):
     bird_identifier = models.CharField(
         max_length=256, verbose_name=_("Patienten Alias")
     )
-    bird = models.ForeignKey("Bird", on_delete=models.CASCADE, verbose_name=_("Vogel"))
+    bird = models.ForeignKey(
+        "Bird", default="1", on_delete=models.CASCADE, verbose_name=_("Vogel")
+    )
     age = models.CharField(max_length=15, choices=CHOICE_AGE, verbose_name=_("Alter"))
     sex = models.CharField(
-        max_length=15, choices=CHOICE_SEX, verbose_name=_("Geschlecht")
+        max_length=15,
+        choices=CHOICE_SEX,
+        default="Unbekannt",
+        verbose_name=_("Geschlecht"),
     )
     date_found = models.DateField(verbose_name=_("Datum des Fundes"))
-    place = models.CharField(max_length=256, verbose_name=_("Ort des Fundes"))
-    created = models.DateTimeField(auto_now_add=True, verbose_name=_("angelegt am"))
-    updated = models.DateTimeField(auto_now=True, verbose_name=_("geändert am"))
-    find_circumstances = models.ForeignKey(
-        "Circumstance", on_delete=models.CASCADE, verbose_name=_("Fundumstände")
+    place_found = models.CharField(
+        choices=CHOICE_PLACE,
+        default="Innenstadt",
+        verbose_name=_("Ort des Fundes"),
     )
-    diagnostic_finding = models.CharField(
-        max_length=256, verbose_name=_("Diagnose bei Fund")
+    finder = models.TextField(
+        choices=CHOICE_FINDER, default="Privatperson", verbose_name=_("Finder")
     )
+    find_circumstances = models.CharField(
+        choices=CHOICE_CIRCUMSTANCES, verbose_name=_("Fundumstände")
+    )
+    diagnosis_finding = models.TextField(
+        null=True, blank=True, verbose_name=_("Diagnose bei Fund")
+    )
+    diagnosis_doctor = models.TextField(
+        verbose_name=_("Diagnose durch Tierarzt"),
+        null=True,
+        blank=True,
+    )
+    comment = models.TextField(blank=True, null=True, verbose_name=_("Bemerkung"))
+    status = models.CharField(choices=CHOICE_STATUS, null=True, blank=True)
     user = models.ForeignKey(
         settings.AUTH_USER_MODEL, on_delete=models.CASCADE, verbose_name=_("Benutzer")
     )
-    status = models.ForeignKey("BirdStatus", on_delete=models.CASCADE, default=1)
-    aviary = models.ForeignKey(
-        Aviary,
-        on_delete=models.SET_NULL,
-        blank=True,
-        null=True,
-        verbose_name=_("Voliere"),
-    )
-    sent_to = models.CharField(
-        max_length=256, null=True, blank=True, verbose_name=_("Übersandt nach")
-    )
-    comment = models.TextField(blank=True, null=True, verbose_name=_("Bemerkung"))
-    finder = models.TextField(
-        blank=True,
-        null=True,
-        verbose_name=_("Finder"),
-        default="Vorname: \nNachname: \nStraße: \nHausnummer: \nStadt: \nPLZ: \nTelefonnummer: ",
-    )
+    created = models.DateTimeField(auto_now_add=True, verbose_name=_("angelegt am"))
+    updated = models.DateTimeField(auto_now=True, verbose_name=_("geändert am"))
 
     class Meta:
         verbose_name = _("Patient")
@@ -83,7 +75,7 @@ class FallenBird(models.Model):
 class Bird(models.Model):
     id = models.BigAutoField(primary_key=True)
     name = models.CharField(max_length=256, unique=True, verbose_name=_("Bezeichnung"))
-    description = RichTextField(verbose_name=_("Erläuterungen"))
+    description = RichTextField(null=True, blank=True, verbose_name=_("Erläuterungen"))
 
     class Meta:
         verbose_name = _("Vogel")
@@ -92,29 +84,3 @@ class Bird(models.Model):
 
     def __str__(self):
         return self.name
-
-
-class BirdStatus(models.Model):
-    id = models.BigAutoField(primary_key=True)
-    description = models.CharField(
-        max_length=256, unique=True, verbose_name=_("Bezeichnung")
-    )
-
-    class Meta:
-        verbose_name = _("Patientenstatus")
-        verbose_name_plural = _("Patientenstatus")
-
-    def __str__(self):
-        return self.description
-
-
-class Circumstance(models.Model):
-    id = models.BigAutoField(primary_key=True)
-    description = models.CharField(max_length=256, verbose_name=_("Bezeichnung"))
-
-    class Meta:
-        verbose_name = _("Fundumstand")
-        verbose_name_plural = _("Fundumstände")
-
-    def __str__(self) -> str:
-        return self.description

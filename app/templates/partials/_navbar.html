@@ -25,10 +25,6 @@
                             href="{% url 'bird_create' %}">neuer Patient</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link {% if '/aviary/all' in request.path %} active {% endif %}"
-                            href="{% url 'aviary_all' %}">Volieren</a>
-                    </li>
-                    <li class="nav-item">
                         <a class="nav-link {% if '/costs/all' in request.path %} active {% endif %}"
                             href="{% url 'costs_all' %}">Kosten</a>
                     </li>

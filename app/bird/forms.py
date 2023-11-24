@@ -3,7 +3,7 @@ from datetime import date
 from django import forms
 from django.utils.translation import gettext_lazy as _
 
-from .models import FallenBird
+from .models import Bird, FallenBird
 
 
 class DateInput(forms.DateInput):
@@ -13,7 +13,7 @@ class DateInput(forms.DateInput):
 class BirdAddForm(forms.ModelForm):
     class Meta:
         widgets = {
-            "date_found": DateInput(format="%Y-%m-%d", attrs={"value": date.today})
+            "date_found": DateInput(format="%Y-%m-%d", attrs={"value": date.today}),
         }
         model = FallenBird
         fields = [
@@ -22,24 +22,30 @@ class BirdAddForm(forms.ModelForm):
             "age",
             "sex",
             "date_found",
-            "place",
-            "find_circumstances",
-            "diagnostic_finding",
+            "place_found",
             "finder",
+            "find_circumstances",
+            "status",
+            "diagnosis_finding",
+            "diagnosis_doctor",
             "comment",
         ]
         labels = {
             "bird_identifier": _("Kennung"),
-            "bird": _("Vogel"),
+            "bird": _("Taubenart"),
             "age": _("Alter"),
             "sex": _("Geschlecht"),
-            "date_found": _("Datum des Fundes"),
+            "date_found": _("Funddatum"),
             "place": _("Fundort"),
-            "find_circumstances": _("Fundumstände"),
-            "diagnostic_finding": _("Diagnose bei Fund"),
-            "comment": _("Bermerkung"),
+            "status": _("Status"),
             "finder": _("Finder"),
+            "find_circumstances": _("Fundumstände"),
+            "comment": _("Bermerkung"),
         }
+
+    def __init__(self, *args, **kwargs):
+        super(BirdAddForm, self).__init__(*args, **kwargs)
+        self.fields["bird"].initial = Bird.objects.get(name="Stadttaube")
 
 
 class BirdEditForm(forms.ModelForm):
@@ -49,27 +55,26 @@ class BirdEditForm(forms.ModelForm):
         fields = [
             "bird_identifier",
             "bird",
+            "age",
             "sex",
             "date_found",
-            "place",
-            "status",
-            "aviary",
-            "sent_to",
-            "find_circumstances",
-            "diagnostic_finding",
+            "place_found",
             "finder",
+            "find_circumstances",
+            "status",
+            "diagnosis_finding",
+            "diagnosis_doctor",
             "comment",
         ]
         labels = {
-            "bird": _("Vogel"),
+            "bird_identifier": _("Kennung"),
+            "bird": _("Taubenart"),
+            "age": _("Alter"),
             "sex": _("Geschlecht"),
-            "date_found": _("Datum des Fundes"),
+            "date_found": _("Funddatum"),
             "place": _("Fundort"),
-            "status": _("Status"),
-            "aviary": _("Voliere"),
-            "sent_to": _("Übermittelt nach"),
-            "find_circumstances": _("Fundumstände"),
-            "diagnostic_finding": _("Diagnose bei Fund"),
             "finder": _("Finder"),
+            "find_circumstances": _("Fundumstände"),
             "comment": _("Bermerkung"),
+            "status": _("Status"),
         }

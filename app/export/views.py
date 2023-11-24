@@ -19,11 +19,8 @@ def site_exports(request):
 @login_required(login_url="account_login")
 def export_costs(request):
     costs = Costs.objects.all().values_list(
-        "id_bird__bird_identifier",
-        "costs",
-        "created",
-        "comment",
-        "user__username")
+        "id_bird__bird_identifier", "costs", "created", "comment", "user__username"
+    )
     response = HttpResponse(content_type="text/csv")
     response["Content-Disposition"] = f"attachment, filename=stp_costs_{today}.csv"
     writer = csv.writer(response)
@@ -47,10 +44,9 @@ def export_birds(request):
         "created",
         "updated",
         "find_circumstances__description",
-        "diagnostic_finding",
+        "diagnosis_finding",
         "user__username",
         "status__description",
-        "aviary__description",
         "sent_to",
     )
     response = HttpResponse(content_type="text/csv")

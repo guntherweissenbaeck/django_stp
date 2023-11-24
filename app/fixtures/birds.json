@@ -1,0 +1,1 @@
+[{"model": "bird.bird", "pk": 10, "fields": {"name": "Stadttaube", "description": ""}}, {"model": "bird.bird", "pk": 11, "fields": {"name": "Brieftaube", "description": ""}}, {"model": "bird.bird", "pk": 12, "fields": {"name": "Zuchttaube", "description": ""}}, {"model": "bird.bird", "pk": 13, "fields": {"name": "Wildtaube", "description": ""}}]
