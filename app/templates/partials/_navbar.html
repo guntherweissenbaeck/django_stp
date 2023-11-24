@@ -32,13 +32,10 @@
                         <a class="nav-link {% if '/contacts' in request.path %} active {% endif %}"
                             href="{% url 'contact_all' %}">Kontakte</a>
                     </li>
-
-                    {% if request.user|group_check:"data-export" %} 
-                        <li class="nav-item">
-                            <a class="nav-link {% if '/export' in request.path %} active {% endif %}"
-                            href="{% url 'site_exports' %}">Daten-Export</a>
-                        </li>
-                    {% endif %}
+                    <li class="nav-item">
+                        <a class="nav-link {% if '/export' in request.path %} active {% endif %}"
+                        href="{% url 'site_exports' %}">Daten-Export</a>
+                    </li>
                 {% endif %}
             </ul>
 
