@@ -11,6 +11,7 @@ class FallenBirdAdmin(admin.ModelAdmin):
         "sex",
         "date_found",
         "place_found",
+        "place_found_other",
         "created",
         "updated",
         "user",

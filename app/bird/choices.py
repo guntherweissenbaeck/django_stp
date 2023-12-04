@@ -18,6 +18,7 @@ CHOICE_PLACE = [
     ("Jena Ost", "Jena Ost"),
     ("Jena West", "Jena West"),
     ("Jena Nord", "Jena Nord"),
+    ("anderer Ort", "anderer Ort"),
 ]
 
 CHOICE_FINDER = [
@@ -33,6 +34,7 @@ CHOICE_CIRCUMSTANCES = [
     ("Angriff durch andere Tiere", "Angriff durch andere Tiere"),
     ("Kollision", "Kollision"),
     ("Totfund", "Totfund"),
+    ("andere Fundumstände", "andere Fundumstände"),
 ]
 
 CHOICE_STATUS = [

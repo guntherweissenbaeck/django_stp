@@ -42,11 +42,23 @@ class FallenBird(models.Model):
         default="Innenstadt",
         verbose_name=_("Ort des Fundes"),
     )
+    place_found_other = models.CharField(
+        max_length=256,
+        null=True,
+        blank=True,
+        verbose_name=_("Ort des Fundes (anderer Ort)"),
+    )
     finder = models.TextField(
         choices=CHOICE_FINDER, default="Privatperson", verbose_name=_("Finder")
     )
     find_circumstances = models.CharField(
         choices=CHOICE_CIRCUMSTANCES, verbose_name=_("Fundumstände")
+    )
+    find_circumstances_other = models.CharField(
+        max_length=256,
+        null=True,
+        blank=True,
+        verbose_name=_("Fundumstände (andere)"),
     )
     diagnosis_finding = models.TextField(
         null=True, blank=True, verbose_name=_("Diagnose bei Fund")
