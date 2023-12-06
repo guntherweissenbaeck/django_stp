@@ -49,6 +49,12 @@
                     <a class="nav-link {% if '/accounts/email/' in request.path %} active {% endif %}"
                         href="{% url 'account_email' %}">Profile</a>
                 </li>
+                {% if user.is_superuser %}
+                <li class="nav-item">
+                    <a class="nav-link {% if '/admin' in request.path %} active {% endif %}"
+                        href="{% url 'admin:index' %}">Settings</a>
+                </li>
+                {% endif %}
                 <li class="class-item">
                     <a class="nav-link" href="{% url 'account_logout' %}">Logout</a>
                 </li>
