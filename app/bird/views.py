@@ -21,6 +21,10 @@ def bird_create(request):
             fs = form.save(commit=False)
             fs.user = request.user
             fs.rescuer_id = rescuer_id
+            if fs.find_circumstances != "andere Fundumstände":
+                fs.find_circumstances_other = None
+            if fs.place_found != "anderer Ort":
+                fs.place_found_other = None
             fs.save()
             request.session["rescuer_id"] = None
             return redirect("bird_all")
@@ -67,6 +71,10 @@ def bird_single(request, id):
     if request.method == "POST":
         if form.is_valid():
             fs = form.save(commit=False)
+            if fs.find_circumstances != "andere Fundumstände":
+                fs.find_circumstances_other = None
+            if fs.place_found != "anderer Ort":
+                fs.place_found_other = None
             fs.save()
             return redirect("bird_all")
     context = {"form": form, "bird": bird}
