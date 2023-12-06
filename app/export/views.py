@@ -40,14 +40,13 @@ def export_birds(request):
         "age",
         "sex",
         "date_found",
-        "place",
+        "place_found",
         "created",
         "updated",
-        "find_circumstances__description",
+        "find_circumstances",
         "diagnosis_finding",
         "user__username",
-        "status__description",
-        "sent_to",
+        "status",
     )
     response = HttpResponse(content_type="text/csv")
     response["Content-Disposition"] = f"attachment, filename=stp_birds_{today}.csv"
@@ -66,8 +65,6 @@ def export_birds(request):
             "Diagnose bei Fund",
             "Benutzer",
             "Status",
-            "Voliere",
-            "Übersandt",
         ]
     )
     for bird in birds:
