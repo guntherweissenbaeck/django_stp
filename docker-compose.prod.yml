@@ -5,7 +5,7 @@ services:
     build:
       context: ./app
       dockerfile: Dockerfile.prod
-    command: > 
+    command: >
       bash -c 'while !</dev/tcp/db/5432; do sleep 1; done;
       python manage.py migrate;
       python manage.py collectstatic --no-input --no-post-process;
@@ -58,7 +58,7 @@ services:
       - "./traefik/traefik-public-certificates:/certificates"
     labels:
       - "traefik.enable=true"
-      - "traefik.http.routers.dashboard.rule=Host(`dashboard-fbf.nabu-jena.de`)"
+      - "traefik.http.routers.dashboard.rule=Host(`dashboard-app.stadttauben-jena.de`)"
       - "traefik.http.routers.dashboard.tls=false"
       - "traefik.http.routers.dashboard.tls.certresolver=letsencrypt"
       - "traefik.http.routers.dashboard.service=api@internal"
