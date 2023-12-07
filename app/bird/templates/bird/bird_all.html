@@ -70,7 +70,13 @@
       <td><a href="{% url 'bird_single' bird.id %}">{{ bird.bird_identifier }}</a></td>
       <td>{{ bird.bird }}</td>
       <td data-order="{{ forloop.counter }}">{{ bird.date_found }}</td>
-      <td>{{ bird.place_found }}</td>
+      <td>
+        {% if bird.place_found == 'anderer Ort'%}
+          {{ bird.place_found_other }}
+        {% else %}
+          {{ bird.place_found }}
+        {% endif %}
+      </td>      
       <td>{{ bird.status }}</td>
       <td>{{ bird.total_costs|default_if_none:"0,00" }} &euro;</td>
       <td>{{ bird.age|default_if_none:"" }}</td>
