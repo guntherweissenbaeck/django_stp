@@ -12,7 +12,7 @@
   <div class="d-flex justify-content-center mt-5">
     <div class="card shadow p-3 mb-5 bg-white rounded">
       <div class="card-body">
-        <h5>Willkommen bei der <strong>Stadttauben</strong> App</h5>
+        <h5>Willkommen bei der <strong>Stadttauben-Jena</strong> App</h5>
         <form class="login" method="POST" action="{% url 'account_login' %}">
           {% csrf_token %}
           {{ form|crispy }}
@@ -21,7 +21,6 @@
           {% endif %}
           <div class="btn-group col-12" role="group" data-toggle="buttons">
             <button class="col-3 btn btn-primary" type="submit">{% trans "Sign In" %}</button>
-            <a class="col-5 btn btn-danger" href="{% url 'account_reset_password' %}">{% trans "Forgot Password?" %}</a>
           </div>
         </form>
       </div>
