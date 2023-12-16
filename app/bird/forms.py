@@ -42,7 +42,7 @@ class BirdAddForm(forms.ModelForm):
             "status": _("Status"),
             "finder": _("Finder"),
             "find_circumstances": _("Fundumstände"),
-            "comment": _("Bermerkung"),
+            "comment": _("Bemerkung"),
         }
 
     def __init__(self, *args, **kwargs):
@@ -78,6 +78,6 @@ class BirdEditForm(forms.ModelForm):
             "date_found": _("Funddatum"),
             "finder": _("Finder"),
             "find_circumstances": _("Fundumstände"),
-            "comment": _("Bermerkung"),
+            "comment": _("Bemerkung"),
             "status": _("Status"),
         }
