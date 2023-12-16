@@ -31,10 +31,12 @@ CHOICE_CIRCUMSTANCES = [
     ("Entkräftung", "Entkräftung"),
     ("Rettung (Taubenabwehr)", "Rettung (Taubenabwehr)"),
     ("Bergung (Balkon)", "Bergung (Balkon)"),
-    ("Angriff durch andere Tiere", "Angriff durch andere Tiere"),
     ("Kollision", "Kollision"),
     ("Totfund", "Totfund"),
+    ("Verletzung", "Verletzung,"),
+    ("Flugunfähigkeit", "Flugunfähigkeit"),
     ("andere Fundumstände", "andere Fundumstände"),
+    ("Unbekannt", "Unbekannt"),
 ]
 
 CHOICE_STATUS = [
