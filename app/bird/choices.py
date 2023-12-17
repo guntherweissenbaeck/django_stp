@@ -33,7 +33,7 @@ CHOICE_CIRCUMSTANCES = [
     ("Bergung (Balkon)", "Bergung (Balkon)"),
     ("Kollision", "Kollision"),
     ("Totfund", "Totfund"),
-    ("Verletzung", "Verletzung,"),
+    ("Verletzung", "Verletzung"),
     ("Flugunfähigkeit", "Flugunfähigkeit"),
     ("andere Fundumstände", "andere Fundumstände"),
     ("Unbekannt", "Unbekannt"),
