@@ -115,7 +115,7 @@ try:
 except ImportError:
     print("No CSP Settings found!")
 
-## X-XSS-Protection
+# X-XSS-Protection
 SECURE_BROWSER_XSS_FILTER = True
 
 ROOT_URLCONF = "core.urls"
