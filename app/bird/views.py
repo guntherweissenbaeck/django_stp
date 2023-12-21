@@ -48,7 +48,11 @@ def bird_help_single(request, id):
 
 @login_required(login_url="account_login")
 def bird_all(request):
-    birds = FallenBird.objects.order_by("date_found").annotate(total_costs=Sum("costs__costs")).order_by("date_found")
+    birds = (
+        FallenBird.objects.order_by("date_found")
+        .annotate(total_costs=Sum("costs__costs"))
+        .order_by("date_found")
+    )
     context = {"birds": birds}
     return render(request, "bird/bird_all.html", context)
 

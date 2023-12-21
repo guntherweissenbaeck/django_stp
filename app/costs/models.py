@@ -17,21 +17,15 @@ class Costs(models.Model):
         verbose_name=_("Patient"),
     )
     costs = models.DecimalField(
-        max_digits=5,
-        decimal_places=2,
-        default="0.00",
-        verbose_name=_("Betrag"))
-    created = models.DateField(
-        verbose_name=_("Gebucht am"))
+        max_digits=5, decimal_places=2, default="0.00", verbose_name=_("Betrag")
+    )
+    created = models.DateField(verbose_name=_("Gebucht am"))
     comment = models.CharField(
-        max_length=512,
-        blank=True,
-        null=True,
-        verbose_name=_("Bemerkungen"))
+        max_length=512, blank=True, null=True, verbose_name=_("Bemerkungen")
+    )
     user = models.ForeignKey(
-        settings.AUTH_USER_MODEL,
-        on_delete=models.CASCADE,
-        verbose_name=_("Benutzer"))
+        settings.AUTH_USER_MODEL, on_delete=models.CASCADE, verbose_name=_("Benutzer")
+    )
 
     class Meta:
         verbose_name = _("Kosten")
