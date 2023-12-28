@@ -49,7 +49,7 @@ def bird_help_single(request, id):
 @login_required(login_url="account_login")
 def bird_all(request):
     birds = (
-        FallenBird.objects.order_by("date_found")
+        FallenBird.objects.order_by("date_found").filter(~Q(status="Verstorben") & ~Q(status="Euthanasie"))
         .annotate(total_costs=Sum("costs__costs"))
         .order_by("date_found")
     )
@@ -60,7 +60,7 @@ def bird_all(request):
 @login_required(login_url="account_login")
 def bird_inactive(request):
     birds = (
-        FallenBird.objects.filter(~Q(status="1") & ~Q(status="2"))
+        FallenBird.objects.filter(Q(status="Verstorben") | Q(status="Euthanasie"))
         .annotate(total_costs=Sum("costs__costs"))
         .order_by("date_found")
     )
