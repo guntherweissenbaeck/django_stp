@@ -51,7 +51,11 @@ def bird_all(request):
     birds = (
         FallenBird.objects.order_by("date_found")
         .filter(
-            ~Q(status="Verstorben") & ~Q(status="Euthanasie") & ~Q(status="Taubenhaus")
+            ~Q(status="Verstorben")
+            & ~Q(status="Euthanasie")
+            & ~Q(status="Taubenhaus")
+            & ~Q(status="Voliere Handicaps")
+            & ~Q(status="Gehege Handicaps")
         )
         .annotate(total_costs=Sum("costs__costs"))
         .order_by("date_found")
@@ -64,7 +68,11 @@ def bird_all(request):
 def bird_inactive(request):
     birds = (
         FallenBird.objects.filter(
-            Q(status="Verstorben") | Q(status="Euthanasie") | Q(status="Taubenhaus")
+            Q(status="Verstorben")
+            | Q(status="Euthanasie")
+            | Q(status="Taubenhaus")
+            | Q(status="Voliere Handicaps")
+            | Q(status="Gehege Handicaps")
         )
         .annotate(total_costs=Sum("costs__costs"))
         .order_by("date_found")
