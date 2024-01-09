@@ -61,10 +61,10 @@ class FallenBird(models.Model):
         verbose_name=_("Fundumstände (andere)"),
     )
     diagnosis_finding = models.TextField(
-        null=True, blank=True, verbose_name=_("Diagnose bei Fund")
+        null=True, blank=True, verbose_name=_("Diagnose")
     )
     diagnosis_doctor = models.TextField(
-        verbose_name=_("Diagnose durch Tierarzt"),
+        verbose_name=_("Behandlungen"),
         null=True,
         blank=True,
     )

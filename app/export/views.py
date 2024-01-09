@@ -64,7 +64,7 @@ def export_birds(request):
             "Pateient angelegt am",
             "Pateient aktualisiert am",
             "Fundumstände",
-            "Diagnose bei Fund",
+            "Diagnose",
             "Benutzer",
             "Status",
         ]
