@@ -84,10 +84,7 @@ def bird_inactive(request):
 @login_required(login_url="account_login")
 def bird_single(request, id):
     bird = FallenBird.objects.get(id=id)
-    form = BirdEditForm(
-        request.POST or None,
-        request.FILES or None,
-        instance=bird)
+    form = BirdEditForm(request.POST or None, request.FILES or None, instance=bird)
     if request.method == "POST":
         if form.is_valid():
             fs = form.save(commit=False)
