@@ -14,6 +14,9 @@ class BirdAddForm(forms.ModelForm):
     class Meta:
         widgets = {
             "date_found": DateInput(format="%Y-%m-%d", attrs={"value": date.today}),
+            "diagnosis_finding": forms.Textarea(attrs={"rows": 3}),
+            "diagnosis_doctor": forms.Textarea(attrs={"rows": 3}),
+            "comment": forms.Textarea(attrs={"rows": 3}),
         }
         model = FallenBird
         fields = [
@@ -52,7 +55,12 @@ class BirdAddForm(forms.ModelForm):
 
 class BirdEditForm(forms.ModelForm):
     class Meta:
-        widgets = {"date_found": DateInput(format="%Y-%m-%d")}
+        widgets = {
+            "date_found": DateInput(format="%Y-%m-%d"),
+            "diagnosis_finding": forms.Textarea(attrs={"rows": 3}),
+            "diagnosis_doctor": forms.Textarea(attrs={"rows": 3}),
+            "comment": forms.Textarea(attrs={"rows": 3}),
+        }
         model = FallenBird
         fields = [
             "bird_identifier",
