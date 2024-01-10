@@ -76,8 +76,9 @@ class BirdEditForm(forms.ModelForm):
             "age": _("Alter"),
             "sex": _("Geschlecht"),
             "date_found": _("Funddatum"),
+            "place": _("Fundort"),
+            "status": _("Status"),
             "finder": _("Finder"),
             "find_circumstances": _("Fundumstände"),
             "comment": _("Bemerkung"),
-            "status": _("Status"),
         }
