@@ -85,6 +85,7 @@ JAZZMIN_SETTINGS = {
         "costs.Costs": "fas fa-solid fa-money-bill",
         "contact.Contact": "fas fa-solid fa-address-card",
         "contact.ContactTag": "fas fa-solid fa-tags",
+        "pictures.Picture": "fas fa-solid fa-image",
     },
     # Icons that are used when one is not manually specified
     #  "default_icon_parents": "fas fa-chevron-circle-right",

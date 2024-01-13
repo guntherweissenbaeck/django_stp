@@ -2,6 +2,9 @@ from django.contrib import admin
 from django.urls import path, include
 from bird import views
 
+from django.conf import settings
+from django.conf.urls.static import static
+
 urlpatterns = [
     # Dynamic sites
     path("", views.bird_all, name="index"),
@@ -16,3 +19,7 @@ urlpatterns = [
     # Static sites
     # path("", include("sites.urls")),
 ]
+
+# how to add the path for the media files
+MEDIA_URL = "/media/"
+urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
