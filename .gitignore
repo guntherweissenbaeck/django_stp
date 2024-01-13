@@ -178,3 +178,6 @@ postgres
 
 # Prestatic Collections
 app/staticfiles
+
+# media files
+app/media
