@@ -34,6 +34,7 @@ def bird_create(request):
                     image=request.FILES["picture"], fallenbird=fs
                 )
                 picture.save()
+
             request.session["rescuer_id"] = None
             return redirect("bird_all")
     context = {"form": form}
