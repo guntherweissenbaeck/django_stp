@@ -4,13 +4,23 @@ from django import forms
 from django.utils.translation import gettext_lazy as _
 
 from .models import Bird, FallenBird
+from pictures.models import Picture
 
 
 class DateInput(forms.DateInput):
     input_type = "date"
 
 
+class PictureForm(forms.ModelForm):
+    class Meta:
+        model = Picture
+        fields = ["image"]  # assuming 'image' is the field in Picture model
+
+
 class BirdAddForm(forms.ModelForm):
+    # picture = forms.ModelChoiceField(queryset=Picture.objects.all(), required=False)
+    picture = forms.ImageField(required=False)
+
     class Meta:
         widgets = {
             "date_found": DateInput(format="%Y-%m-%d", attrs={"value": date.today}),
@@ -34,6 +44,7 @@ class BirdAddForm(forms.ModelForm):
             "diagnosis_finding",
             "diagnosis_doctor",
             "comment",
+            "picture",
         ]
         labels = {
             "bird_identifier": _("Kennung"),
@@ -46,11 +57,14 @@ class BirdAddForm(forms.ModelForm):
             "finder": _("Finder"),
             "find_circumstances": _("Fundumstände"),
             "comment": _("Bemerkung"),
+            "picture": _("Bild"),
         }
 
     def __init__(self, *args, **kwargs):
         super(BirdAddForm, self).__init__(*args, **kwargs)
         self.fields["bird"].initial = Bird.objects.get(name="Stadttaube")
+        # make it possible to upload multiple pictures
+        self.fields["picture"].widget.attrs["multiple"] = True
 
 
 class BirdEditForm(forms.ModelForm):

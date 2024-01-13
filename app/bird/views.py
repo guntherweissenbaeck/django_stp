@@ -5,6 +5,7 @@ from django.shortcuts import redirect, render
 
 from .forms import BirdAddForm, BirdEditForm
 from .models import Bird, FallenBird
+from pictures.models import Picture
 
 
 @login_required(login_url="account_login")
@@ -26,6 +27,13 @@ def bird_create(request):
             if fs.place_found != "anderer Ort":
                 fs.place_found_other = None
             fs.save()
+
+            # how to save multiple images
+            for picture in request.FILES.getlist("picture"):
+                picture = Picture.objects.create(
+                    image=request.FILES["picture"], fallenbird=fs
+                )
+                picture.save()
             request.session["rescuer_id"] = None
             return redirect("bird_all")
     context = {"form": form}
