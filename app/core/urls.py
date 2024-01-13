@@ -12,12 +12,11 @@ urlpatterns = [
     path("contacts/", include("contact.urls")),
     path("costs/", include("costs.urls")),
     path("export/", include("export.urls")),
+    path("pictures/", include("pictures.urls")),
     # Admin
     path("admin/", admin.site.urls),
     # Allauth
     path("accounts/", include("allauth.urls")),
-    # Static sites
-    # path("", include("sites.urls")),
 ]
 
 # how to add the path for the media files
