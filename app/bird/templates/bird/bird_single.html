@@ -4,7 +4,8 @@
 {% block content %}
 
 <h3>Patient <strong>{{ bird.bird_identifier }}</strong> bearbeiten </h3>
-    Das Alter des Patienten bei Fund wurde mit <strong>{{ bird.age }}</strong> angegeben.</p>
+    <p>Das Alter des Patienten bei Fund wurde mit <strong>{{ bird.age }}</strong> angegeben. <a class="link" href="{% url 'pictures_single' bird.id %}">Bilder</a></p>
+    
 <div class="row">
     <div class="col-lg-6 mb-3">
         <form method="post" enctype="multipart/form-data">
