@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+{% load static %}
+{% block header %}
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@docsearch/css@3">
+<link rel="stylesheet" href="{% static 'css/gallery.css' %}">
+
+{% endblock header %}
+
+{% block content %}
+<h3>Patientengallerie</h3>
+
+<div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3 mt-3">
+    {% for picture in pictures %}
+    <div class="col">
+      <div class="card shadow-sm">
+          {% comment %} <svg class="bd-placeholder-img card-img-top" width="100%" height="225" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#55595c"/><text x="50%" y="50%" fill="#eceeef" dy=".3em">Thumbnail</text></svg> {% endcomment %}
+        <img src="{{ picture.image.url }}" alt="{{ picture.title }}">
+        <div class="card-body">
+          <p class="card-text">{{ picture.fallenbird }} <small>{{ picture.fallenbird.bird }}, {{ picture.fallenbird.place_found }},  {{ picture.fallenbird.find_circumstances }}</small></p>
+          <div class="d-flex justify-content-between align-items-center">
+            <div class="btn-group">
+              <button type="button" class="btn btn-sm btn-outline-secondary">Ansehen</button>
+              <button type="button" class="btn btn-sm btn-outline-secondary">Löschen</button>
+            </div>
+            <small class="text-body-secondary">{{ picture.date_uploaded }}</small>
+          </div>
+        </div>
+      </div>
+    </div>
+    {% endfor %}
+</div>
+
+{% endblock content %}
