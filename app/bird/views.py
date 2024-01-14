@@ -29,12 +29,10 @@ def bird_create(request):
             fs.save()
 
             # how to save multiple images
-            for picture in request.FILES.getlist("picture"):
-                picture = Picture.objects.create(
-                    image=request.FILES["picture"], fallenbird=fs
-                )
+            print(request.FILES.getlist("picture"))
+            for uploaded_picture in request.FILES.getlist("picture"):
+                picture = Picture.objects.create(image=uploaded_picture, fallenbird=fs)
                 picture.save()
-
             request.session["rescuer_id"] = None
             return redirect("bird_all")
     context = {"form": form}
