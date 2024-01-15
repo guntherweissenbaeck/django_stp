@@ -13,3 +13,4 @@ names>=0.3.0
 pillow>=10.2
 psycopg2-binary>=2.9
 whitenoise>=6.5
+fontawesomefree>=6.5

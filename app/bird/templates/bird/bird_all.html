@@ -1,6 +1,7 @@
 {% extends "base.html" %}
 {% load static %}
 {% block header %}
+
 <!-- Datatable CSS -->
 <link rel="stylesheet" href="https://cdn.datatables.net/1.13.4/css/dataTables.bootstrap5.min.css" />
 <link rel="stylesheet" href="https://cdn.datatables.net/responsive/2.2.9/css/responsive.bootstrap5.min.css">
@@ -13,6 +14,11 @@
 <script src="https://cdn.datatables.net/1.11.3/js/dataTables.bootstrap5.min.js"></script>
 <script src="https://cdn.datatables.net/responsive/2.2.9/js/dataTables.responsive.min.js"></script>
 <script src="https://cdn.datatables.net/responsive/2.2.9/js/responsive.bootstrap5.min.js"></script>
+
+<!-- FontAwesome -->
+<link href="{% static 'fontawesomefree/css/fontawesome.css' %}" rel="stylesheet" type="text/css">
+<link href="{% static 'fontawesomefree/css/brands.css' %}" rel="stylesheet" type="text/css">
+<link href="{% static 'fontawesomefree/css/solid.css' %}" rel="stylesheet" type="text/css">
 
 <script nonce="{{request.csp_nonce}}">
   $(document).ready(function () {
@@ -55,6 +61,7 @@
   <thead>
     <tr>
       <th>Patienten Alias</th>
+      {% comment %} <th>Bilder</th> {% endcomment %}
       <th>Vogel</th>
       <th>gefunden am</th>
       <th>Fundort</th>
@@ -68,6 +75,7 @@
     {% for bird in birds %}
     <tr>
       <td><a href="{% url 'bird_single' bird.id %}">{{ bird.bird_identifier }}</a></td>
+      {% comment %} <td><a href="{% url 'pictures_single' bird.id %}"><i class="fa-solid fa-camera" ></i></a></td> {% endcomment %}
       <td>{{ bird.bird }}</td>
       <td data-order="{{ forloop.counter }}">{{ bird.date_found }}</td>
       <td>
