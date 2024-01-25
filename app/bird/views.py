@@ -29,7 +29,6 @@ def bird_create(request):
             fs.save()
 
             # how to save multiple images
-            print(request.FILES.getlist("picture"))
             for uploaded_picture in request.FILES.getlist("picture"):
                 picture = Picture.objects.create(image=uploaded_picture, fallenbird=fs)
                 picture.save()
@@ -100,6 +99,11 @@ def bird_single(request, id):
             if fs.place_found != "anderer Ort":
                 fs.place_found_other = None
             fs.save()
+            # how to save multiple images
+            for uploaded_picture in request.FILES.getlist("picture"):
+                picture = Picture.objects.create(image=uploaded_picture, fallenbird=fs)
+                picture.save()
+
             return redirect("bird_all")
     context = {"form": form, "bird": bird}
     return render(request, "bird/bird_single.html", context)

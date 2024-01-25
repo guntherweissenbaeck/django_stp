@@ -19,7 +19,8 @@
           <div class="d-flex justify-content-between align-items-center">
             <div class="btn-group">
               <button type="button" class="btn btn-sm btn-outline-secondary">Ansehen</button>
-              <button type="button" class="btn btn-sm btn-outline-secondary">Löschen</button>
+              {% comment %} <button type="button" class="btn btn-sm btn-outline-secondary">Löschen</button> {% endcomment %}
+              <a class="btn btn-sm btn-outline-secondary" href="{% url 'pictures_delete' picture.id %}">Löschen</a>
             </div>
             <small class="text-body-secondary">{{ picture.date_uploaded }}</small>
           </div>

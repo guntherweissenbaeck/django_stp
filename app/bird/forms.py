@@ -14,16 +14,16 @@ class DateInput(forms.DateInput):
 class PictureForm(forms.ModelForm):
     class Meta:
         model = Picture
-        fields = ["image"]  # assuming 'image' is the field in Picture model
+        fields = ["image"]
 
 
 class BirdAddForm(forms.ModelForm):
-    # picture = forms.ModelChoiceField(queryset=Picture.objects.all(), required=False)
     picture = forms.ImageField(required=False)
 
     class Meta:
         widgets = {
-            "date_found": DateInput(format="%Y-%m-%d", attrs={"value": date.today}),
+            "date_found": DateInput(format="%Y-%m-%d", attrs={"value":
+                                                              date.today}),
             "diagnosis_finding": forms.Textarea(attrs={"rows": 3}),
             "diagnosis_doctor": forms.Textarea(attrs={"rows": 3}),
             "comment": forms.Textarea(attrs={"rows": 3}),
@@ -63,11 +63,13 @@ class BirdAddForm(forms.ModelForm):
     def __init__(self, *args, **kwargs):
         super(BirdAddForm, self).__init__(*args, **kwargs)
         self.fields["bird"].initial = Bird.objects.get(name="Stadttaube")
-        # make it possible to upload multiple pictures
         self.fields["picture"].widget.attrs["multiple"] = True
+        self.fields["picture"].label = _("Bilder")
 
 
 class BirdEditForm(forms.ModelForm):
+    picture = forms.ImageField(required=False)
+
     class Meta:
         widgets = {
             "date_found": DateInput(format="%Y-%m-%d"),
@@ -91,6 +93,7 @@ class BirdEditForm(forms.ModelForm):
             "diagnosis_finding",
             "diagnosis_doctor",
             "comment",
+            "picture",
         ]
         labels = {
             "bird_identifier": _("Kennung"),
@@ -103,4 +106,10 @@ class BirdEditForm(forms.ModelForm):
             "finder": _("Finder"),
             "find_circumstances": _("Fundumstände"),
             "comment": _("Bemerkung"),
+            "picture": _("Bild"),
         }
+
+    def __init__(self, *args, **kwargs):
+        super(BirdEditForm, self).__init__(*args, **kwargs)
+        self.fields["picture"].widget.attrs["multiple"] = True
+        self.fields["picture"].label = _("Bilder")
