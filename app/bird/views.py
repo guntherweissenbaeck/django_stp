@@ -3,6 +3,8 @@ from django.contrib.auth.decorators import login_required
 from django.db.models import Q, Sum
 from django.shortcuts import redirect, render
 
+from datetime import datetime
+
 from .forms import BirdAddForm, BirdEditForm
 from .models import Bird, FallenBird
 
@@ -25,6 +27,8 @@ def bird_create(request):
                 fs.find_circumstances_other = None
             if fs.place_found != "anderer Ort":
                 fs.place_found_other = None
+            fs.created = datetime.now()
+            fs.staus_changed = datetime.now()
             fs.save()
             request.session["rescuer_id"] = None
             return redirect("bird_all")

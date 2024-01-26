@@ -75,6 +75,9 @@ class FallenBird(models.Model):
     )
     created = models.DateTimeField(auto_now_add=True, verbose_name=_("angelegt am"))
     updated = models.DateTimeField(auto_now=True, verbose_name=_("geändert am"))
+    status_changed = models.DateTimeField(
+        null=True, blank=True, verbose_name=_("Statusänderung am")
+    )
 
     class Meta:
         verbose_name = _("Patient")

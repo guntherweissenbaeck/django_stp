@@ -7,6 +7,7 @@ from .models import Bird, FallenBird
 class FallenBirdAdmin(admin.ModelAdmin):
     list_display = [
         "bird",
+        "bird_identifier",
         "age",
         "sex",
         "date_found",
@@ -14,6 +15,7 @@ class FallenBirdAdmin(admin.ModelAdmin):
         "place_found_other",
         "created",
         "updated",
+        "status_changed",
         "user",
     ]
     list_filter = ("bird", "created", "user")

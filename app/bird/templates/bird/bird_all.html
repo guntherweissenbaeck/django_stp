@@ -59,6 +59,7 @@
       <th>gefunden am</th>
       <th>Fundort</th>
       <th>Status</th>
+      <th>Statusänderung</th>
       <th>Kosten</th>
       <th>Alter</th>
       <th>Geschlecht</th>
@@ -77,7 +78,8 @@
           {{ bird.place_found }}
         {% endif %}
       </td>      
-      <td>{{ bird.status }}</td>
+      <td>{{ bird.status|default_if_none:"" }}</td>
+      <td>{{ bird.status_changed|date:"Y-m-d"|default_if_none:"" }}</td>
       <td>{{ bird.total_costs|default_if_none:"0,00" }} &euro;</td>
       <td>{{ bird.age|default_if_none:"" }}</td>
       <td>{{ bird.sex }}</td>

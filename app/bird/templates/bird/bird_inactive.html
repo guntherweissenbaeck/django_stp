@@ -53,6 +53,7 @@
       <th>Patienten Alias</th>
       <th>Vogel</th>
       <th>gefunden am</th>
+      <th>Statusänderung</th>
       <th>Fundort</th>
       <th>Status</th>
       <th>Kosten</th>
@@ -65,7 +66,8 @@
     <tr>
       <td><a href="{% url 'bird_single' bird.id %}">{{ bird.bird_identifier }}</a></td>
       <td>{{ bird.bird }}</td>
-      <td data-order="{{ forloop.counter }}">{{ bird.date_found }}</td>
+      <td data-order="{{ forloop.counter }}">{{ bird.date_found|date:"Y-m-d" }}</td>
+      <td>{{ bird.status_changed|date:"Y-m-d"|default_if_none:"" }}</td>
       <td>{{ bird.place }}</td>
       <td>{{ bird.status }}</td>
       <td>{{ bird.total_costs|default_if_none:"0,00" }} &euro;</td>

@@ -57,6 +57,7 @@ class BirdEditForm(forms.ModelForm):
     class Meta:
         widgets = {
             "date_found": DateInput(format="%Y-%m-%d"),
+            "status_changed": DateInput(format="%Y-%m-%d"),
             "diagnosis_finding": forms.Textarea(attrs={"rows": 3}),
             "diagnosis_doctor": forms.Textarea(attrs={"rows": 3}),
             "comment": forms.Textarea(attrs={"rows": 3}),
@@ -74,6 +75,7 @@ class BirdEditForm(forms.ModelForm):
             "find_circumstances",
             "find_circumstances_other",
             "status",
+            "status_changed",
             "diagnosis_finding",
             "diagnosis_doctor",
             "comment",
