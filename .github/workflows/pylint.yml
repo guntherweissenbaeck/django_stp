@@ -23,3 +23,6 @@ jobs:
     - name: Analysing the code with pylint
       run: |
         pylint $(git ls-files 'app/*.py')
+        - name: Analysing the code with pylint
+      run: |
+        pylint --ignore=migrations $(git ls-files 'app/*.py')
