@@ -22,4 +22,4 @@ jobs:
         pip install -r app/requirements.txt
     - name: Analysing the code with pylint
       run: |
-        pylint --ignore=file_to_ignore.py,directory_to_ignore $(git ls-files 'app/*.py')
+        pylint --ignore=migrations $(git ls-files 'app/*.py')
