@@ -1,5 +1,5 @@
 from django.contrib.auth.decorators import login_required
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 
 from .models import Picture
 from bird.models import FallenBird
@@ -24,16 +24,20 @@ def pictures_single(request, id):
 
 @login_required(login_url="account_login")
 def pictures_delete(request, id):
-    pictures = Picture.objects.all().filter(id=id)
+    picture = Picture.objects.get(id=id)
+    print(id, picture)
     if request.method == "POST":
-        pictures.delete()
-    if not pictures:
-        pictures = []
-    context = {"pictures": pictures}
+        print("here")
+        picture.delete()
+        return redirect("bird_all")
+    if not picture:
+        picture = []
+    context = {"picture": picture}
     return render(request, "pictures/pictures_delete.html", context)
+
 
 #  @login_required(login_url="account_login")
 #  def pictures_edit(request, id):
-    #  picture = Picture.objects.all().get(id=id)
-    #  context = {"picture": picture}
-    #  return render(request, "pictures/pictures_edit.html", context)
+#  picture = Picture.objects.all().get(id=id)
+#  context = {"picture": picture}
+#  return render(request, "pictures/pictures_edit.html", context)

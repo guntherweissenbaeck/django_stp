@@ -6,6 +6,7 @@ from django.shortcuts import redirect, render
 from .forms import BirdAddForm, BirdEditForm
 from .models import Bird, FallenBird
 from pictures.models import Picture
+from django.contrib import messages
 
 
 @login_required(login_url="account_login")
@@ -30,7 +31,9 @@ def bird_create(request):
 
             # how to save multiple images
             for uploaded_picture in request.FILES.getlist("picture"):
-                picture = Picture.objects.create(image=uploaded_picture, fallenbird=fs)
+                picture = Picture.objects.create(
+                    image=uploaded_picture, fallenbird=fs
+                )
                 picture.save()
             request.session["rescuer_id"] = None
             return redirect("bird_all")
@@ -90,7 +93,10 @@ def bird_inactive(request):
 @login_required(login_url="account_login")
 def bird_single(request, id):
     bird = FallenBird.objects.get(id=id)
-    form = BirdEditForm(request.POST or None, request.FILES or None, instance=bird)
+    form = BirdEditForm(
+        request.POST or None, request.FILES or None, instance=bird
+    )
+    pics_count = Picture.objects.filter(fallenbird=bird).count()
     if request.method == "POST":
         if form.is_valid():
             fs = form.save(commit=False)
@@ -101,11 +107,13 @@ def bird_single(request, id):
             fs.save()
             # how to save multiple images
             for uploaded_picture in request.FILES.getlist("picture"):
-                picture = Picture.objects.create(image=uploaded_picture, fallenbird=fs)
+                picture = Picture.objects.create(
+                    image=uploaded_picture, fallenbird=fs
+                )
                 picture.save()
-
-            return redirect("bird_all")
-    context = {"form": form, "bird": bird}
+            messages.success(request, "Patientendaten wurden gespeichert.")
+            return redirect("bird_single", id=id)
+    context = {"form": form, "bird": bird, "pics_count": pics_count}
     return render(request, "bird/bird_single.html", context)
 
 

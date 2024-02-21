@@ -1,14 +1,13 @@
 {% extends "base.html" %}
 {% load static %}
+
 {% block header %}
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@docsearch/css@3">
 <link rel="stylesheet" href="{% static 'css/gallery.css' %}">
-
 {% endblock header %}
 
 {% block content %}
 <h3>Patientengallerie</h3>
-
 <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3 mt-3">
     {% for picture in pictures %}
     <div class="col">
@@ -29,5 +28,4 @@
     </div>
     {% endfor %}
 </div>
-
 {% endblock content %}

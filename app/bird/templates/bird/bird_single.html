@@ -12,9 +12,26 @@
 
 {% block content %}
 
-<h3>Patient <strong>{{ bird.bird_identifier }}</strong> bearbeiten <small><a href="{% url 'pictures_single' bird.id %}"><i class="fa-solid fa-camera" style="font-size:18px" ></i></a></small>  </h3>
-    <p>Das Alter des Patienten bei Fund wurde mit <strong>{{ bird.age }}</strong> angegeben. </p>
+<h3>Patient <strong>{{ bird.bird_identifier }}</strong> bearbeiten <small></small>  </h3>
+
+{% if messages %}
+    {% for message in messages %}
+        <div id="alert-message" class="alert alert-info alert-dismissible fade show" role="alert">
+            {{ message }}
+        </div>
+    {% endfor %}
+{% endif %}    
+
+<p>Das Alter des Patienten bei Fund wurde mit <strong>{{ bird.age }}</strong> angegeben. </br>
     
+{% if pics_count %}
+<ul>
+    <li><a  href="{% url 'pictures_single' bird.id %}">Bildersammlung</a></p>
+</li>
+</ul>    
+{% endif %}
+
+
 <div class="row">
     <div class="col-lg-6 mb-3">
         <form method="post" enctype="multipart/form-data">

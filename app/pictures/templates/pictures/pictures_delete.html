@@ -26,8 +26,8 @@
   </div>
   {% endfor %}
   <p class="mt-3">
-      <a class="btn btn-secondary" href="#">Abbruch</a></li>
-      <a class="btn btn-primary" href="#">Löschen</a>
+    <a href="{% url 'bird_all' %}" class="btn btn-success">Abbrechen</a>
+    <button class="btn btn-danger" type="submit">Löschen</button>
   </p>
 </div>
 {% endif %}

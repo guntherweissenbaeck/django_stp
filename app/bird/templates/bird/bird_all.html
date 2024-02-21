@@ -51,8 +51,10 @@
 {% block content %}
 <h3>Übersicht aller Patienten in Behandlung</h3>
 <p>
-  Übersicht aller in Behandlung befindlichen Vögel. Die nicht
-  mehr in Behandlung befindlichen Patienten finden Sie <a href="{% url 'bird_inactive' %}">hier</a>.
+  Übersicht aller in Behandlung befindlichen Vögel.
+  <ul>
+    <li><a href="{% url 'bird_inactive' %}">nicht mehr in Behandlung befindlichen Patienten</a></li>
+  </ul>
 </p>
 <p>
   <p><a href="{% url 'bird_create' %}" class="btn btn-primary">einen Patienten anlegen</a></p>
