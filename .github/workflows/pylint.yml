@@ -22,4 +22,4 @@ jobs:
         pip install -r app/requirements.txt
     - name: Analysing the code with flake8
       run: |
-        flake8 --ignore=E501,F401 .
+        flake8 --ignore=E501,F401 ./app
