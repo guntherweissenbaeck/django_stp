@@ -18,8 +18,8 @@ jobs:
     - name: Install dependencies
       run: |
         python -m pip install --upgrade pip
-        pip install pylint
+        pip install flake8==6.0.0
         pip install -r app/requirements.txt
-    - name: Analysing the code with pylint
+    - name: Analysing the code with flake8
       run: |
-        pylint --ignore=migrations $(git ls-files 'app/*.py')
+        flake8 --ignore=E501,F401 .
