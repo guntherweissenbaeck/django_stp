@@ -27,6 +27,8 @@ def bird_create(request):
                 fs.find_circumstances_other = None
             if fs.place_found != "anderer Ort":
                 fs.place_found_other = None
+            if fs.status != "Vermittlung":
+                fs.status_mediation = None
             fs.created = datetime.now()
             fs.staus_changed = datetime.now()
             fs.save()
@@ -88,7 +90,9 @@ def bird_inactive(request):
 @login_required(login_url="account_login")
 def bird_single(request, id):
     bird = FallenBird.objects.get(id=id)
-    form = BirdEditForm(request.POST or None, request.FILES or None, instance=bird)
+    form = BirdEditForm(
+        request.POST or None, request.FILES or None, instance=bird
+    )
     if request.method == "POST":
         if form.is_valid():
             fs = form.save(commit=False)
@@ -96,6 +100,8 @@ def bird_single(request, id):
                 fs.find_circumstances_other = None
             if fs.place_found != "anderer Ort":
                 fs.place_found_other = None
+            if fs.status != "Vermittlung":
+                fs.status_mediation = None
             fs.save()
             return redirect("bird_all")
     context = {"form": form, "bird": bird}
