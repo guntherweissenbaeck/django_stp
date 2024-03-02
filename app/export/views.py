@@ -48,6 +48,7 @@ def export_birds(request):
         "diagnosis_finding",
         "user__username",
         "status",
+        "status_changed",
     )
     response = HttpResponse(content_type="text/csv")
     response["Content-Disposition"] = f"attachment, filename=stp_birds_{today}.csv"
@@ -67,6 +68,7 @@ def export_birds(request):
             "Diagnose",
             "Benutzer",
             "Status",
+            "Status geändert am",
         ]
     )
     for bird in birds:

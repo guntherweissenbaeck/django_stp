@@ -46,4 +46,5 @@ CHOICE_STATUS = [
     ("Voliere Handicaps", "Voliere Handicaps"),
     ("Euthanasie", "Euthanasie"),
     ("Verstorben", "Verstorben"),
+    ("Vermittlung", "Vermittlung"),
 ]

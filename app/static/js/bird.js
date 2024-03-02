@@ -25,7 +25,7 @@ document.getElementById("id_place_found").addEventListener("change", (event) => 
 });
 
 // --------------------------------------------
-// Fundumstände
+// Fundumstaende
 // --------------------------------------------
 
 function showHideCircumstancesOther() {
@@ -49,3 +49,32 @@ function showHideCircumstancesOther() {
 document.getElementById("id_find_circumstances").addEventListener("change", (event) => {
     showHideCircumstancesOther()
 });
+
+
+// --------------------------------------------
+// Status Vermittlung
+// --------------------------------------------
+
+function showHideStatusMediation() {
+    let statusField = document.getElementById("id_status");
+    let statusText = statusField.options[statusField.selectedIndex].text;
+    let statusMediationField = document.getElementById("div_id_status_mediation");
+
+    if (statusText == 'Vermittlung') {
+        statusMediationField.hidden = false
+    } else {
+        statusMediationField.hidden = true
+    }
+}
+
+
+// Load function on windows load.
+(showHideStatusMediation)();
+
+
+// Load function on change.
+document.getElementById("id_status").addEventListener("change", (event) => {
+    showHideStatusMediation()
+});
+
+

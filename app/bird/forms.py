@@ -22,8 +22,9 @@ class BirdAddForm(forms.ModelForm):
 
     class Meta:
         widgets = {
-            "date_found": DateInput(format="%Y-%m-%d", attrs={"value":
-                                                              date.today}),
+            "date_found": DateInput(
+                format="%Y-%m-%d", attrs={"value": date.today}
+            ),
             "diagnosis_finding": forms.Textarea(attrs={"rows": 3}),
             "diagnosis_doctor": forms.Textarea(attrs={"rows": 3}),
             "comment": forms.Textarea(attrs={"rows": 3}),
@@ -41,6 +42,7 @@ class BirdAddForm(forms.ModelForm):
             "find_circumstances",
             "find_circumstances_other",
             "status",
+            "status_mediation",
             "diagnosis_finding",
             "diagnosis_doctor",
             "comment",
@@ -54,6 +56,7 @@ class BirdAddForm(forms.ModelForm):
             "date_found": _("Funddatum"),
             "place": _("Fundort"),
             "status": _("Status"),
+            "status_mediation": _("Vermittlung"),
             "finder": _("Finder"),
             "find_circumstances": _("Fundumstände"),
             "comment": _("Bemerkung"),
@@ -73,6 +76,7 @@ class BirdEditForm(forms.ModelForm):
     class Meta:
         widgets = {
             "date_found": DateInput(format="%Y-%m-%d"),
+            "status_changed": DateInput(format="%Y-%m-%d"),
             "diagnosis_finding": forms.Textarea(attrs={"rows": 3}),
             "diagnosis_doctor": forms.Textarea(attrs={"rows": 3}),
             "comment": forms.Textarea(attrs={"rows": 3}),
@@ -90,6 +94,8 @@ class BirdEditForm(forms.ModelForm):
             "find_circumstances",
             "find_circumstances_other",
             "status",
+            "status_mediation",
+            "status_changed",
             "diagnosis_finding",
             "diagnosis_doctor",
             "comment",
@@ -103,6 +109,7 @@ class BirdEditForm(forms.ModelForm):
             "date_found": _("Funddatum"),
             "place": _("Fundort"),
             "status": _("Status"),
+            "status_mediation": _("Vermittlung"),
             "finder": _("Finder"),
             "find_circumstances": _("Fundumstände"),
             "comment": _("Bemerkung"),

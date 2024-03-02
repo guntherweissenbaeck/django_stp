@@ -3,6 +3,8 @@ from django.contrib.auth.decorators import login_required
 from django.db.models import Q, Sum
 from django.shortcuts import redirect, render
 
+from datetime import datetime
+
 from .forms import BirdAddForm, BirdEditForm
 from .models import Bird, FallenBird
 from pictures.models import Picture
@@ -27,6 +29,10 @@ def bird_create(request):
                 fs.find_circumstances_other = None
             if fs.place_found != "anderer Ort":
                 fs.place_found_other = None
+            if fs.status != "Vermittlung":
+                fs.status_mediation = None
+            fs.created = datetime.now()
+            fs.staus_changed = datetime.now()
             fs.save()
 
             # how to save multiple images
@@ -104,6 +110,8 @@ def bird_single(request, id):
                 fs.find_circumstances_other = None
             if fs.place_found != "anderer Ort":
                 fs.place_found_other = None
+            if fs.status != "Vermittlung":
+                fs.status_mediation = None
             fs.save()
             # how to save multiple images
             for uploaded_picture in request.FILES.getlist("picture"):
