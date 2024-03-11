@@ -47,4 +47,5 @@ CHOICE_STATUS = [
     ("Euthanasie", "Euthanasie"),
     ("Verstorben", "Verstorben"),
     ("Vermittlung", "Vermittlung"),
+    ("Freilassung", "Freilassung"),
 ]
