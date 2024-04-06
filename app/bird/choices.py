@@ -18,6 +18,8 @@ CHOICE_PLACE = [
     ("Jena Ost", "Jena Ost"),
     ("Jena West", "Jena West"),
     ("Jena Nord", "Jena Nord"),
+    ("Burgau", "Burgau"),
+    ("Göschwitz", "Göschwitz"),
     ("anderer Ort", "anderer Ort"),
 ]
 
