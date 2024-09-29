@@ -5,13 +5,13 @@ CHOICE_AGE = [
 ]
 
 CHOICE_SEX = [
-    ("Unbekannt", "Unbekannt"),  # Choices for the sex of the bird
+    ("Unbekannt", "Unbekannt"),
     ("Männlich", "Männlich"),
     ("Weiblich", "Weiblich"),
 ]
 
 CHOICE_PLACE = [
-    ("Innenstadt", "Innenstadt"),  # Choices for the place of finding the bird
+    ("Innenstadt", "Innenstadt"),
     ("Lobeda Ost", "Lobeda Ost"),
     ("Lobeda West", "Lobeda West"),
     ("Winzerla", "Winzerla"),
