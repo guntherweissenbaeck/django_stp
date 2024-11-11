@@ -50,4 +50,5 @@ CHOICE_STATUS = [
     ("Verstorben", "Verstorben"),
     ("Vermittlung", "Vermittlung"),
     ("Freilassung", "Freilassung"),
+    ("Taubenhaus City", "Taubenhaus City"),
 ]
