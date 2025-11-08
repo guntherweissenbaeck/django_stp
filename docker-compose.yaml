@@ -6,7 +6,7 @@ services:
     container_name: django_stp_web_1
     command: >
       bash -c 'while !</dev/tcp/db/5432; do sleep 1; done;
-      python manage.py makemigrations;
+      python manage.py makemigrations --merge;
       python manage.py migrate;
       python manage.py collectstatic --no-input --no-post-process;
       python manage.py runserver 0.0.0.0:8000'
