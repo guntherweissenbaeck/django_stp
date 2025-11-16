@@ -23,11 +23,11 @@ CHOICE_PLACE = [
     ("anderer Ort", "anderer Ort"),
 ]
 
-CHOICE_FINDER = [
-    ("Privatperson", "Privatperson"),
-    ("Firma", "Firma"),
-    ("Behörde", "Behörde"),
-]
+# CHOICE_FINDER = [
+#     ("Privatperson", "Privatperson"),
+#     ("Firma", "Firma"),
+#     ("Behörde", "Behörde"),
+# ]
 
 CHOICE_CIRCUMSTANCES = [
     ("Entkräftung", "Entkräftung"),

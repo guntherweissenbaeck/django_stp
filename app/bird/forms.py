@@ -13,9 +13,7 @@ class DateInput(forms.DateInput):
 class BirdAddForm(forms.ModelForm):
     class Meta:
         widgets = {
-            "date_found": DateInput(
-                format="%Y-%m-%d", attrs={"value": date.today}
-            ),
+            "date_found": DateInput(format="%Y-%m-%d", attrs={"value": date.today}),
             "diagnosis_finding": forms.Textarea(attrs={"rows": 3}),
             "diagnosis_doctor": forms.Textarea(attrs={"rows": 3}),
             "comment": forms.Textarea(attrs={"rows": 3}),
@@ -29,7 +27,7 @@ class BirdAddForm(forms.ModelForm):
             "date_found",
             "place_found",
             "place_found_other",
-            "finder",
+            # "finder",
             "find_circumstances",
             "find_circumstances_other",
             "status",
@@ -47,7 +45,7 @@ class BirdAddForm(forms.ModelForm):
             "place": _("Fundort"),
             "status": _("Status"),
             "status_mediation": _("Vermittlung"),
-            "finder": _("Finder"),
+            # "finder": _("Finder"),
             "find_circumstances": _("Fundumstände"),
             "comment": _("Bemerkung"),
         }
@@ -75,7 +73,7 @@ class BirdEditForm(forms.ModelForm):
             "date_found",
             "place_found",
             "place_found_other",
-            "finder",
+            # "finder",
             "find_circumstances",
             "find_circumstances_other",
             "status",
@@ -94,7 +92,7 @@ class BirdEditForm(forms.ModelForm):
             "place": _("Fundort"),
             "status": _("Status"),
             "status_mediation": _("Vermittlung"),
-            "finder": _("Finder"),
+            # "finder": _("Finder"),
             "find_circumstances": _("Fundumstände"),
             "comment": _("Bemerkung"),
         }

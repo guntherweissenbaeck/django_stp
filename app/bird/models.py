@@ -10,7 +10,7 @@ from ckeditor.fields import RichTextField
 from .choices import (
     CHOICE_AGE,
     CHOICE_CIRCUMSTANCES,
-    CHOICE_FINDER,
+    # CHOICE_FINDER,
     CHOICE_PLACE,
     CHOICE_SEX,
     CHOICE_STATUS,
@@ -29,9 +29,7 @@ class FallenBird(models.Model):
     bird = models.ForeignKey(
         "Bird", default="1", on_delete=models.CASCADE, verbose_name=_("Vogel")
     )
-    age = models.CharField(
-        max_length=15, choices=CHOICE_AGE, verbose_name=_("Alter")
-    )
+    age = models.CharField(max_length=15, choices=CHOICE_AGE, verbose_name=_("Alter"))
     sex = models.CharField(
         max_length=15,
         choices=CHOICE_SEX,
@@ -50,9 +48,9 @@ class FallenBird(models.Model):
         blank=True,
         verbose_name=_("Ort des Fundes (anderer Ort)"),
     )
-    finder = models.TextField(
-        choices=CHOICE_FINDER, default="Privatperson", verbose_name=_("Finder")
-    )
+    # finder = models.TextField(
+    #     choices=CHOICE_FINDER, default="Privatperson", verbose_name=_("Finder")
+    # )
     find_circumstances = models.CharField(
         choices=CHOICE_CIRCUMSTANCES, verbose_name=_("Fundumstände")
     )
@@ -70,9 +68,7 @@ class FallenBird(models.Model):
         null=True,
         blank=True,
     )
-    comment = models.TextField(
-        blank=True, null=True, verbose_name=_("Bemerkung")
-    )
+    comment = models.TextField(blank=True, null=True, verbose_name=_("Bemerkung"))
     status = models.CharField(choices=CHOICE_STATUS, null=True, blank=True)
     status_mediation = models.CharField(
         max_length=256,
@@ -85,12 +81,8 @@ class FallenBird(models.Model):
         on_delete=models.CASCADE,
         verbose_name=_("Benutzer"),
     )
-    created = models.DateTimeField(
-        auto_now_add=True, verbose_name=_("angelegt am")
-    )
-    updated = models.DateTimeField(
-        auto_now=True, verbose_name=_("geändert am")
-    )
+    created = models.DateTimeField(auto_now_add=True, verbose_name=_("angelegt am"))
+    updated = models.DateTimeField(auto_now=True, verbose_name=_("geändert am"))
     status_changed = models.DateTimeField(
         null=True, blank=True, verbose_name=_("Statusänderung am")
     )
@@ -105,12 +97,8 @@ class FallenBird(models.Model):
 
 class Bird(models.Model):
     id = models.BigAutoField(primary_key=True)
-    name = models.CharField(
-        max_length=256, unique=True, verbose_name=_("Bezeichnung")
-    )
-    description = RichTextField(
-        null=True, blank=True, verbose_name=_("Erläuterungen")
-    )
+    name = models.CharField(max_length=256, unique=True, verbose_name=_("Bezeichnung"))
+    description = RichTextField(null=True, blank=True, verbose_name=_("Erläuterungen"))
 
     class Meta:
         verbose_name = _("Vogel")
